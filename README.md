@@ -2,7 +2,6 @@
 
 技术栈：SpringBoot2 + Vue2.0 + ElementUI + Mysql
 
-免费开源，完全手写，适合小白，求求 <b style="color=red">Star</b>
 
 [项目笔记在这里](文档/笔记.md)
 
