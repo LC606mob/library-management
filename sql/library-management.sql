@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost_3306
+ Source Server         : test
  Source Server Type    : MySQL
- Source Server Version : 50737
+ Source Server Version : 80040 (8.0.40)
  Source Host           : localhost:3306
  Source Schema         : library-management
 
  Target Server Type    : MySQL
- Target Server Version : 50737
+ Target Server Version : 80040 (8.0.40)
  File Encoding         : 65001
 
- Date: 03/11/2022 19:01:59
+ Date: 11/04/2025 12:31:43
 */
 
 SET NAMES utf8mb4;
@@ -22,17 +22,17 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名',
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '联系方式',
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '邮箱',
-  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updatetime` datetime(0) NULL DEFAULT NULL,
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '密码',
-  `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `username_key`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                          `id` int NOT NULL AUTO_INCREMENT,
+                          `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名',
+                          `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '联系方式',
+                          `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '邮箱',
+                          `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP,
+                          `updatetime` datetime NULL DEFAULT NULL,
+                          `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '密码',
+                          `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态',
+                          PRIMARY KEY (`id`) USING BTREE,
+                          UNIQUE INDEX `username_key`(`username` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of admin
@@ -45,22 +45,22 @@ INSERT INTO `admin` VALUES (2, 'admin1', '13877889900', 'admin1@qq.com', '2022-1
 -- ----------------------------
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
-  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '描述',
-  `publish_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '出版日期',
-  `author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '作者',
-  `publisher` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '出版社',
-  `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '分类',
-  `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标准码',
-  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '封面',
-  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `updatetime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `score` int(10) NULL DEFAULT NULL COMMENT '积分',
-  `nums` int(10) NULL DEFAULT 0 COMMENT '数量',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `book_no_index`(`book_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
+                         `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '描述',
+                         `publish_date` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '出版日期',
+                         `author` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '作者',
+                         `publisher` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '出版社',
+                         `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '分类',
+                         `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标准码',
+                         `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '封面',
+                         `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                         `updatetime` datetime NULL DEFAULT NULL COMMENT '更新时间',
+                         `score` int NULL DEFAULT NULL COMMENT '积分',
+                         `nums` int NULL DEFAULT 0 COMMENT '数量',
+                         PRIMARY KEY (`id`) USING BTREE,
+                         UNIQUE INDEX `book_no_index`(`book_no` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of book
@@ -76,20 +76,20 @@ INSERT INTO `book` VALUES (10, '钢铁是怎样炼成的', NULL, NULL, NULL, NUL
 -- ----------------------------
 DROP TABLE IF EXISTS `borrow`;
 CREATE TABLE `borrow`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书名称',
-  `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书标准码',
-  `user_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户会员码',
-  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名称',
-  `user_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户联系方式',
-  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `updatetime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `score` int(10) NULL DEFAULT NULL COMMENT '借书积分',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '已借出' COMMENT '借书状态',
-  `days` int(11) NULL DEFAULT 1 COMMENT '借书天数',
-  `return_date` datetime(0) NULL DEFAULT NULL COMMENT '归还日期',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `book_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书名称',
+                           `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书标准码',
+                           `user_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户会员码',
+                           `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名称',
+                           `user_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户联系方式',
+                           `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                           `updatetime` datetime NULL DEFAULT NULL COMMENT '更新时间',
+                           `score` int NULL DEFAULT NULL COMMENT '借书积分',
+                           `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '已借出' COMMENT '借书状态',
+                           `days` int NULL DEFAULT 1 COMMENT '借书天数',
+                           `return_date` datetime NULL DEFAULT NULL COMMENT '归还日期',
+                           PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of borrow
@@ -116,14 +116,14 @@ INSERT INTO `borrow` VALUES (18, 'Java学习指南', 'JAVA_212113123', '20220927
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
-  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
-  `pid` int(11) NULL DEFAULT NULL COMMENT '父级id',
-  `createtime` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updatetime` timestamp(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                             `id` int NOT NULL AUTO_INCREMENT,
+                             `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
+                             `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '备注',
+                             `pid` int NULL DEFAULT NULL COMMENT '父级id',
+                             `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                             `updatetime` timestamp NULL DEFAULT NULL,
+                             PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of category
@@ -142,21 +142,21 @@ INSERT INTO `category` VALUES (13, '微分子科技', NULL, 11, '2022-10-17 22:1
 -- ----------------------------
 DROP TABLE IF EXISTS `retur`;
 CREATE TABLE `retur`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `book_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书名称',
-  `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书标准码',
-  `user_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户会员码',
-  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名称',
-  `user_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户联系方式',
-  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
-  `updatetime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
-  `score` int(10) NULL DEFAULT NULL COMMENT '借书积分',
-  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '已借出' COMMENT '借书状态',
-  `days` int(11) NULL DEFAULT 1 COMMENT '借书天数',
-  `return_date` datetime(0) NULL DEFAULT NULL COMMENT '归还日期',
-  `real_date` datetime(0) NULL DEFAULT NULL COMMENT '实际归还日期',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                          `id` int NOT NULL AUTO_INCREMENT,
+                          `book_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书名称',
+                          `book_no` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图书标准码',
+                          `user_no` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户会员码',
+                          `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名称',
+                          `user_phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户联系方式',
+                          `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                          `updatetime` datetime NULL DEFAULT NULL COMMENT '更新时间',
+                          `score` int NULL DEFAULT NULL COMMENT '借书积分',
+                          `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT '已借出' COMMENT '借书状态',
+                          `days` int NULL DEFAULT 1 COMMENT '借书天数',
+                          `return_date` datetime NULL DEFAULT NULL COMMENT '归还日期',
+                          `real_date` datetime NULL DEFAULT NULL COMMENT '实际归还日期',
+                          PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of retur
@@ -177,20 +177,20 @@ INSERT INTO `retur` VALUES (11, 'Java学习指南', 'JAVA_212113123', '202209276
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '姓名',
-  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '会员码',
-  `age` int(11) NULL DEFAULT NULL COMMENT '年龄',
-  `sex` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '性别',
-  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '联系方式',
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '地址',
-  `createtime` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `updatetime` datetime(0) NULL DEFAULT NULL,
-  `account` int(10) NULL DEFAULT 0 COMMENT '账户余额',
-  `status` tinyint(1) NULL DEFAULT 1 COMMENT '禁用状态 1不禁用',
-  PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `username_index`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '姓名',
+                         `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '会员码',
+                         `age` int NULL DEFAULT NULL COMMENT '年龄',
+                         `sex` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '性别',
+                         `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '联系方式',
+                         `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '地址',
+                         `createtime` datetime NULL DEFAULT CURRENT_TIMESTAMP,
+                         `updatetime` datetime NULL DEFAULT NULL,
+                         `account` int NULL DEFAULT 0 COMMENT '账户余额',
+                         `status` tinyint(1) NULL DEFAULT 1 COMMENT '禁用状态 1不禁用',
+                         PRIMARY KEY (`id`) USING BTREE,
+                         UNIQUE INDEX `username_index`(`username` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
