@@ -23,7 +23,7 @@ http://localhost:8080/login
 
 <img src="./文档/登录.png">
 
-<img src="./文档/会员.png">
+<img src="文档/会员.png">
 
 <img src="./文档/图书.png">
 
